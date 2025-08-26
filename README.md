@@ -10,7 +10,7 @@ Prognostication for individuals with lung cancer is a complex task, often relyin
 
 <p align="center">
 
-![Illness-Death Model for Semi-Competing Risks](Images/illness-death.png){width=50%}
+![Illness-Death Model for Semi-Competing Risks](Images/illness-death.png)
 
 </p>
 
@@ -22,7 +22,7 @@ Following developments in the prediction of time-to-event outcomes with neural n
 
 <p align="center">
 
-![Graphical Overview of the Neural EM Algorithm](Images/overview.png){width=50%}
+![Graphical Overview of the Neural EM Algorithm](Images/overview.png)
 
 </p>
 
