@@ -2,7 +2,7 @@
 #
 #  PROGRAM: METHOD_02.R
 #
-#  AUTHOR:  Stephen Salerno
+#  AUTHORS: Stephen Salerno, Zhilin Zhang
 #
 #  PURPOSE: Generate simulation results for Method 02: Lee et al. (2017)
 #

@@ -2,7 +2,7 @@
 #
 #  PROGRAM: METHOD_03.R
 #
-#  AUTHOR:  Stephen Salerno
+#  AUTHORS: Stephen Salerno, Zhilin Zhang
 #
 #  PURPOSE: Generate simulation results for Method 03: Gorfine et al. (2020)
 #
@@ -99,7 +99,7 @@ for (i in 1:nrow(settings)) {
 
           delta1 = delta1, delta2 = delta2, delta3 = delta3,
 
-          save_address = "C:/Users/saler/Desktop",
+          save_address = "Results/Method_03/",
 
           name = paste0("simulation number_", seed))
 

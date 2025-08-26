@@ -1,2 +1,75 @@
 # SemiCompDNN
+
 Code for "Deep Learning of Semi-Competing Risk Data via a New Neural Expectation-Maximization Algorithm"
+
+## Overview
+
+Prognostication for individuals with lung cancer is a complex task, often relying on the use of risk factors and health events spanning their entire life course. One challenge is that an individual's disease course involves non-terminal (e.g., disease progression) and terminal (e.g., death) events, which form *semi-competing* relationships. By semi-competing, we mean that the occurrence of a non-terminal event is subject to the occurrence of a terminal event.  
+
+<br>
+
+<p align="center">
+
+![Illness-Death Model for Semi-Competing Risks](Images/illness-death.png){width=50%}
+
+</p>
+
+<br>
+
+Following developments in the prediction of time-to-event outcomes with neural networks, deep learning has become a key area of focus for the development of risk prediction methods in survival analysis. However, limited work has been done to predict multi-state or competing risk outcomes, let alone semi-competing outcomes. To address this, we propose a novel neural expectation-maximization algorithm, in which we hope to bridge the gap between classical statistical approaches and machine learning. Our algorithm allows us to estimate the non-parametric baseline hazards of each state transition, risk functions of our predictors, and the degree of dependence among different transitions by utilizing a multi-task deep neural network with transition-specific sub-architectures. As deep learning can recover non-linear risk scores, we test our method by simulating risk surfaces of varying complexity. 
+
+<br>
+
+<p align="center">
+
+![Graphical Overview of the Neural EM Algorithm](Images/overview.png){width=50%}
+
+</p>
+
+<br>
+
+This repository contains the code necessary to implement this approach and reproduce our results. In this directory are the following files:
+
+## Simulations
+
+The following `.R` file generates the data for simulation study. The simulated data are stored in sixteen files, `simdat{SETTING}.RData`, with each file corresponding to one simulation setting. Each file contains a size `n x 31 x nsims` array, storing `nsims` generated datasets of size `n x 31`.
+
+  - `SIM_DATA.R`: Data Generation
+
+Each of the following `.R` files generates simulation results for a particular method under comparison, based on the data previously generated in the corresponding `simdat{SETTING}.RData` file. For each method, the code outputs the simulation results stored in sixteen `.RData` files, `Sim_{METHOD}_{SETTING}.RData`, with each file corresponding to one simulation setting. Each `.RData` file contains an `n x parameters x nsims` array, storing the estimated parameters for each simulated dataset.
+
+  - `Method_00.R`: Xu et al. (2010)
+  - `Method_01.R`: Lee et al. (2015)
+  - `Method_02.R`: Lee et al. (2017)
+  - `Method_03.R`: Gorfine et al. (2020)
+  - `Method_04.R`: Kats et al. (2022)
+
+The following `.py` file generates the simulation results for our proposed method, based on the data previously generated in the corresponding `simdat{SETTING}.RData` file. The simulation results are stored in `16 x nsims` `.pkl` files, `Sim_05_{REPLICATE}_{SETTING}.pkl`, with each file corresponding to one replicate from one simulation setting. Each file contains an `n x 10` array, storing the estimated frailty variance, baseline hazard parameters, and log risk functions for each simulated dataset.
+
+  - `METHOD_DNN.py`: Proposed Method
+
+### Hypertuning
+
+Our proposed approach and the two Bayesian approaches under comparison require additional tuning of their respective hyperparameters. The following `.R` and `.ipynb` files provide the code to hypertune these approaches.
+
+  - `TUNE_01.R`: Hypertuning for Lee et al. (2015)
+  - `TUNE_02.R`: Hypertuning for Lee et al. (2017)
+  - `TUNE_DNN.ipynb`: Hypertuning for Proposed Method
+  
+## frailty-LTRC-master
+
+This directory provides the code to implement the method of Gorfine et al. (2020).
+
+## semicompAFT-main 
+
+This directory provides the code to implement the method of Kats et al. (2022).
+
+## Data
+
+Our work is motivated by the Boston Lung Cancer Study (BLCS), one of the largest lung cancer survival cohorts in the world. A primary objective of the BLCS is to better understand how risk factors influence a patient's disease trajectory, where they may experience adverse events such as a disease progression prior to death. To address this, the BLCS has amassed a comprehensive database on patients enrolled at the Massachusetts General Hospital and the Dana-Farber Cancer Institute since 1992. The data collected by the BLCS contain demographics, social history, pathology, treatments, oncogenic mutation status, and other risk factors pertinent to these patient outcomes.
+
+While we are unable to provide the real data, we provide our code here for review and reproducibility with similarly structured data. The `.R` script implements the real data analysis for the five methods we compare to, all of which are implemented in `R`. The `.ipynb` file implements the real data analysis for the proposed method.
+
+  - `BLCS.R`: Real Data Analysis for the Comparison Methods
+  - `BLCS_DNN.ipynb`: Real Data Analysis for the Proposed Method
+  

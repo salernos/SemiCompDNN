@@ -2,7 +2,7 @@
 #
 #  PROGRAM: METHOD_04.R
 #
-#  AUTHOR:  Stephen Salerno
+#  AUTHORS: Stephen Salerno, Zhilin Zhang
 #
 #  PURPOSE: Generate simulation results for Method 04: Kats et al. (2022)
 #

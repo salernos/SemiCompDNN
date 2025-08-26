@@ -2,7 +2,7 @@
 #
 #  PROGRAM: METHOD_00.R
 #
-#  AUTHOR:  Stephen Salerno
+#  AUTHORS: Stephen Salerno, Zhilin Zhang
 #
 #  PURPOSE: Generate simulation results for Method 00: Xu et al. (2010)
 #
