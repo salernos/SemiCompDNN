@@ -10,7 +10,7 @@ Prognostication for individuals with lung cancer is a complex task, often relyin
 
 <p align="center">
 
-![Illness-Death Model for Semi-Competing Risks](Images/illness-death.png)
+![Illness-Death Model for Semi-Competing Risks](images/illness-death.png)
 
 </p>
 
@@ -22,7 +22,7 @@ Following developments in the prediction of time-to-event outcomes with neural n
 
 <p align="center">
 
-![Graphical Overview of the Neural EM Algorithm](Images/overview.png)
+![Graphical Overview of the Neural EM Algorithm](images/overview.png)
 
 </p>
 
@@ -30,7 +30,13 @@ Following developments in the prediction of time-to-event outcomes with neural n
 
 This repository contains the code necessary to implement this approach and reproduce our results. In this directory are the following files:
 
-## Simulations
+## Method (`/method`)
+
+The following `.py` file implements the proposed neural expectation-maximization algorithm for semi-competing risks data (NEM-SCR):
+
+  - `METHOD.py`: Helper Functions and Main Function for NEM-SCR Method
+
+## Simulations (`/simulations`)
 
 The following `.R` file generates the data for simulation study. The simulated data are stored in sixteen files, `simdat{SETTING}.RData`, with each file corresponding to one simulation setting. Each file contains a size `n x 31 x nsims` array, storing `nsims` generated datasets of size `n x 31`.
 
@@ -48,7 +54,7 @@ The following `.py` file generates the simulation results for our proposed metho
 
   - `METHOD_DNN.py`: Proposed Method
 
-### Hypertuning
+### Hypertuning (`/simulations/hypertuning`)
 
 Our proposed approach and the two Bayesian approaches under comparison require additional tuning of their respective hyperparameters. The following `.R` and `.ipynb` files provide the code to hypertune these approaches.
 
@@ -56,20 +62,54 @@ Our proposed approach and the two Bayesian approaches under comparison require a
   - `TUNE_02.R`: Hypertuning for Lee et al. (2017)
   - `TUNE_DNN.ipynb`: Hypertuning for Proposed Method
   
-## frailty-LTRC-master
+## Sensitivity Analyses (`/sensitivity`)
 
-This directory provides the code to implement the method of Gorfine et al. (2020).
+We provide code for additional sensitivity analyses conducted after our initial submission:
 
-## semicompAFT-main 
+  - `SIM_DATA_WALL.R`: Generate Data for Wall Time Sensitivity Analysis
+  - `SIM_DATA_MILD.R`: Generate Mild Nonlinearity Data for Sensitivity Analysis
+  - `SIM_SPLINE.R`: Sensitivity Analysis of Spline-Based Method
+  - `SIM_TREE.R`: Predictive Accuracy for Tree-Based Competing Risks Method
 
-This directory provides the code to implement the method of Kats et al. (2022).
-
-## Data
+## Data (`/data`)
 
 Our work is motivated by the Boston Lung Cancer Study (BLCS), one of the largest lung cancer survival cohorts in the world. A primary objective of the BLCS is to better understand how risk factors influence a patient's disease trajectory, where they may experience adverse events such as a disease progression prior to death. To address this, the BLCS has amassed a comprehensive database on patients enrolled at the Massachusetts General Hospital and the Dana-Farber Cancer Institute since 1992. The data collected by the BLCS contain demographics, social history, pathology, treatments, oncogenic mutation status, and other risk factors pertinent to these patient outcomes.
 
 While we are unable to provide the real data, we provide our code here for review and reproducibility with similarly structured data. The `.R` script implements the real data analysis for the five methods we compare to, all of which are implemented in `R`. The `.ipynb` file implements the real data analysis for the proposed method.
 
   - `BLCS.R`: Real Data Analysis for the Comparison Methods
+  - `BLCS_SPLINE.R`: Real Data Analysis for the Spline-Based Method
+  - `BLCS_TREE.R`: Real Data Analysis for the Tree-Based Method
   - `BLCS_DNN.ipynb`: Real Data Analysis for the Proposed Method
-  
+
+## Code Provenance and Appropriate Reuse
+
+This repository contains a combination of original code for the proposed method and implementations of comparison methods from prior published work. We follow best practices for software transparency and appropriate reuse:
+
+### Original Code (MIT License)
+
+All code implementing the proposed NEM–SCR method was written by the authors and is released under the MIT License. This includes:
+
+  - Model fitting and optimization routines
+  - Data generation for simulations
+  - Analysis scripts for the BLCS study
+
+### Third-Party Code (via Git Submodules)
+
+To ensure proper attribution, versioning, and licensing, external methods not available through the Comprehensive R Archive Network (CRAN) are included as **git submodules** in the 
+`comparison-methods/` directory:
+
+  - `comparison-methods/Frailty-LTRC`: [Implementation of Gorfine et al. (2020)](https://github.com/nirkeret/Frailty-LTRC)
+  - `comparison-methods/semicompAFT`: [Implementation of Kats et al. (2022)](https://github.com/LeaKats/semicompAFT)
+
+These submodules contain unmodified code obtained directly from the original authors' public repositories. We do not redistribute modified copies of these methods.
+
+### Appropriate Reuse and Licensing
+
+We do not claim authorship over any third-party code. Any invocation of external code is done solely for the purpose of fair methodological comparison, and the submodule mechanism ensures reproducibility without code duplication or license ambiguity.
+
+Users cloning this repository should initialize submodules with:
+
+```bash
+git submodule update --init --recursive
+```

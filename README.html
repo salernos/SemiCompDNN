@@ -401,8 +401,18 @@ Algorithm</div>
 approach and reproduce our results. In this directory are the following
 files:</p>
 </div>
-<div id="simulations" class="section level2">
-<h2>Simulations</h2>
+<div id="method-method" class="section level2">
+<h2>Method (<code>/method</code>)</h2>
+<p>The following <code>.py</code> file implements the proposed neural
+expectation-maximization algorithm for semi-competing risks data
+(NEM-SCR):</p>
+<ul>
+<li><code>METHOD.py</code>: Helper Functions and Main Function for
+NEM-SCR Method</li>
+</ul>
+</div>
+<div id="simulations-simulations" class="section level2">
+<h2>Simulations (<code>/simulations</code>)</h2>
 <p>The following <code>.R</code> file generates the data for simulation
 study. The simulated data are stored in sixteen files,
 <code>simdat{SETTING}.RData</code>, with each file corresponding to one
@@ -440,8 +450,8 @@ simulated dataset.</p>
 <ul>
 <li><code>METHOD_DNN.py</code>: Proposed Method</li>
 </ul>
-<div id="hypertuning" class="section level3">
-<h3>Hypertuning</h3>
+<div id="hypertuning-simulationshypertuning" class="section level3">
+<h3>Hypertuning (<code>/simulations/hypertuning</code>)</h3>
 <p>Our proposed approach and the two Bayesian approaches under
 comparison require additional tuning of their respective
 hyperparameters. The following <code>.R</code> and <code>.ipynb</code>
@@ -453,18 +463,23 @@ files provide the code to hypertune these approaches.</p>
 </ul>
 </div>
 </div>
-<div id="frailty-ltrc-master" class="section level2">
-<h2>frailty-LTRC-master</h2>
-<p>This directory provides the code to implement the method of Gorfine
-et al. (2020).</p>
+<div id="sensitivity-analyses-sensitivity" class="section level2">
+<h2>Sensitivity Analyses (<code>/sensitivity</code>)</h2>
+<p>We provide code for additional sensitivity analyses conducted after
+our initial submission:</p>
+<ul>
+<li><code>SIM_DATA_WALL.R</code>: Generate Data for Wall Time
+Sensitivity Analysis</li>
+<li><code>SIM_DATA_MILD.R</code>: Generate Mild Nonlinearity Data for
+Sensitivity Analysis</li>
+<li><code>SIM_SPLINE.R</code>: Sensitivity Analysis of Spline-Based
+Method</li>
+<li><code>SIM_TREE.R</code>: Predictive Accuracy for Tree-Based
+Competing Risks Method</li>
+</ul>
 </div>
-<div id="semicompaft-main" class="section level2">
-<h2>semicompAFT-main</h2>
-<p>This directory provides the code to implement the method of Kats et
-al. (2022).</p>
-</div>
-<div id="data" class="section level2">
-<h2>Data</h2>
+<div id="data-data" class="section level2">
+<h2>Data (<code>/data</code>)</h2>
 <p>Our work is motivated by the Boston Lung Cancer Study (BLCS), one of
 the largest lung cancer survival cohorts in the world. A primary
 objective of the BLCS is to better understand how risk factors influence
@@ -484,9 +499,55 @@ proposed method.</p>
 <ul>
 <li><code>BLCS.R</code>: Real Data Analysis for the Comparison
 Methods</li>
+<li><code>BLCS_SPLINE.R</code>: Real Data Analysis for the Spline-Based
+Method</li>
+<li><code>BLCS_TREE.R</code>: Real Data Analysis for the Tree-Based
+Method</li>
 <li><code>BLCS_DNN.ipynb</code>: Real Data Analysis for the Proposed
 Method</li>
 </ul>
+</div>
+<div id="code-provenance-and-appropriate-reuse" class="section level2">
+<h2>Code Provenance and Appropriate Reuse</h2>
+<p>This repository contains a combination of original code for the
+proposed method and implementations of comparison methods from prior
+published work. We follow best practices for software transparency and
+appropriate reuse:</p>
+<div id="original-code-mit-license" class="section level3">
+<h3>Original Code (MIT License)</h3>
+<p>All code implementing the proposed NEM–SCR method was written by the
+authors and is released under the MIT License. This includes:</p>
+<ul>
+<li>Model fitting and optimization routines</li>
+<li>Data generation for simulations</li>
+<li>Analysis scripts for the BLCS study</li>
+</ul>
+</div>
+<div id="third-party-code-via-git-submodules" class="section level3">
+<h3>Third-Party Code (via Git Submodules)</h3>
+<p>To ensure proper attribution, versioning, and licensing, external
+methods not available through the Comprehensive R Archive Network (CRAN)
+are included as <strong>git submodules</strong> in the
+<code>comparison-methods/</code> directory:</p>
+<ul>
+<li><code>comparison-methods/Frailty-LTRC</code>: <a href="https://github.com/nirkeret/Frailty-LTRC">Implementation of
+Gorfine et al. (2020)</a></li>
+<li><code>comparison-methods/semicompAFT</code>: <a href="https://github.com/LeaKats/semicompAFT">Implementation of Kats et
+al. (2022)</a></li>
+</ul>
+<p>These submodules contain unmodified code obtained directly from the
+original authors’ public repositories. We do not redistribute modified
+copies of these methods.</p>
+</div>
+<div id="appropriate-reuse-and-licensing" class="section level3">
+<h3>Appropriate Reuse and Licensing</h3>
+<p>We do not claim authorship over any third-party code. Any invocation
+of external code is done solely for the purpose of fair methodological
+comparison, and the submodule mechanism ensures reproducibility without
+code duplication or license ambiguity.</p>
+<p>Users cloning this repository should initialize submodules with:</p>
+<pre class="bash"><code>git submodule update --init --recursive</code></pre>
+</div>
 </div>
 </div>
 

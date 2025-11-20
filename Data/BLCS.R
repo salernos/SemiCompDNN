@@ -59,9 +59,9 @@ p_load(
 
   update = F)
 
-source(here("frailty-LTRC-master", "Estimation Procedure.R"))
+source(here("comparison-methods", "Frailty-LTRC", "Estimation Procedure.R"))
 
-source(here("semicompAFT-main", "semicompAFT.R"))
+source(here("comparison-methods", "semicompAFT", "semicompAFT.R"))
 
 #=== DATA ======================================================================
 
@@ -414,7 +414,6 @@ tab2_labs <- list(
   egfr	    ~ "EGFR Mutation",
   kras	    ~ "KRAS Mutation")
 
-# Define the categorization
 BLCS_CLEAN <- BLCS_CLEAN %>%
   mutate(Stage_Group = case_when(
     cstage %in% c("1", "1A", "1B", "2", "2A", "2B", "3", "3A") ~ "Early Stage",
@@ -462,7 +461,6 @@ tab3_labs <- list(
   bmi       ~ "Body Mass Index",
   smk	      ~ "Smoking Status",
   pkyrs	    ~ "Pack-Years of Smoking",
-  # trt       ~ "First-Line Treatment",
   egfr	    ~ "EGFR Mutation",
   kras	    ~ "KRAS Mutation")
 
